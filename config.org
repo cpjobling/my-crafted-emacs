@@ -1,0 +1,64 @@
+#+TITLE: My Crafted Emacs Configuratio
+#+DATE: 2024-08-01
+#+AUTHOR Chris Jobling
+#+EMAIL cpjobling@cpjobling.net
+#+language: en
+#+options: ':t toc:nil num:t author:t email:t
+#+startup: content indent
+#+macro: latest-export-date (eval (format-time-string "%F %T %z"))
+#+macro: word-count (eval (count-words (point-min) (point-max)))
+
+*Last revised and exported on {{{latest-export-date}}} with a word
+count of {{{word-count}}}.*
+
+#+toc: headlines 8 insert TOC here, with eight headline levels
+
+* TODO Introduction
+This is a record of the set up of my personalised version of [[https://github.com/SystemCrafters/crafted-emacs][SystemCrafters/crafted-emacs]]. I am building it as my summer project to set up emacs for my work flows.
+It is a literate configuration (inspired by Prot's [[https://protesilaos.com/emacs/dotemacs[[https://protesilaos.com/emacs/dotemacsuu][][GNU Emacs configuration]] and [[https://github.com/munen/emacs.d][munen/emacs.d]]) that generates =early-init.el= and =init.el=. 
+
+When I want to modify my Emacs setup, I edit this file and then
+evaluate the following code block or do =C-c C-v C-t=. All files will
+be updated accordingly.
+
+#+begin_src emacs-lisp :tangle no :results none
+(org-babel-tangle)
+#+end_src
+
+
+* Initial set up using =early-init.el=
+
+According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/docs/getting-started-guide.org][Crafted Emacs/Getting Started Guidex]], the first thing we should do is create an =earl-init.el= file containing the followinh:
+
+a blank crafted-emacs we do the following
+
+#+begin_src emacs-lisp :tangle "early-init.el"
+(load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
+#+end_src 
+
+Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
+
+#+begin_src emacs-lisp :tangle "init.el"
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (and custom-file
+           (file-exists-p custom-file))
+  (load custom-file nil :nomessage))
+#+end_src
+
+Now we configure crafted emacs by calling the =crafted-init-confug.el=
+
+#+begin_src emacs-lisp :tangle "init.el"
+(load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
+#+end_src
+
+
+** TODO make config use =use-emacs-directory= prefix
+** TODO get text wrapping working: use =M-x visual-line-mode= initially.
+** TODO get the tangling working
+** TODO set up =early-init.el=
+
+* Getting started
+Building out the =init.el= file. Inspired by 
+** TODO get frame size set to full screen
+** TODO install fonts to match terminal
+** TODO install theme to match terminal
