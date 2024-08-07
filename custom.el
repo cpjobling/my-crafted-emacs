@@ -10,7 +10,7 @@
      ("nongnu" . 80)
      ("stable" . 70)
      ("melpa" . 0)))
- '(package-selected-packages nil))
+ '(package-selected-packages '(no-littering)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

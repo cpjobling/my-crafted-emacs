@@ -34,11 +34,22 @@ a blank crafted-emacs we do the following
 
 #+begin_src emacs-lisp :tangle "early-init.el"
 (load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
-#+end_src 
+#+end_src
 
 ** TODO Set up tidy files
 
 See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-Cleaning.org][Teach Emacs to Keep Your Folders Clean]] by David Wilson.
+
+#+begin_src emacs-lisp :tangle "early-init.el"
+;; (require -littering)
+#+end_src
+
+
+** Custom file
+
+Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
+
+
 
 ** Custom file
 
@@ -134,7 +145,6 @@ Here we add some basic configuration settings described and documented by David 
 ** TODO get text wrapping working: use =M-x visual-line-mode= initially.
 ** TODO get the tangling working
 ** TODO set up =early-init.el=
-
 * Getting started
 Building out the =init.el= file. Inspired by
 ** TODO get frame size set to full screen
