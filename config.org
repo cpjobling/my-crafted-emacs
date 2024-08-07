@@ -28,13 +28,19 @@ be updated accordingly.
 
 * Initial set up using =early-init.el=
 
-According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/docs/getting-started-guide.org][Crafted Emacs/Getting Started Guidex]], the first thing we should do is create an =earl-init.el= file containing the followinh:
+According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/docs/getting-started-guide.org][Crafted Emacs/Getting Started Guide], the first thing we should do is create an =earl-init.el= file containing the followinh:
 
 a blank crafted-emacs we do the following
 
 #+begin_src emacs-lisp :tangle "early-init.el"
 (load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
 #+end_src 
+
+** TODO Set up tidy files
+
+See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-Cleaning.org][Teach Emacs to Keep Your Folders Clean]] by David Wilson.
+
+** Custom file
 
 Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
 
@@ -48,7 +54,79 @@ Now we set set up a custom-file to receive the customization values that we set 
 Now we configure crafted emacs by calling the =crafted-init-confug.el=
 
 #+begin_src emacs-lisp :tangle "init.el"
-(load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
+      ;; (use-package 'no-littering)
+      ;; (require 'no-littering)
+      (load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
+#+end_src
+
+* Basic Configuration
+
+Here we add some basic configuration settings described and documented by David Wilson ([[https://systemcrafters.net/][System Crafters]])  in [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch (New)]].
+
+#+begin_src emacs-lisp :tangle "init.el"
+    (setq inhibit-startup-message t  ; Don't show the splash screen
+                              visible-bell t)          ; Flash when the bell rings
+
+      ;; Turn off some unneeded UI elements
+                (menu-bar-mode 1)  ; Leave this one on if you're a beginner!
+                (tool-bar-mode -1)
+                (scroll-bar-mode 1)
+
+                ;; Display line numbers in every buffer
+                (global-display-line-numbers-mode 1)
+
+
+    ;; Configure the Modus Themes' appearance
+  (setq modus-themes-mode-line '(accented borderless)
+        modus-themes-bold-constructs t
+        modus-themes-italic-constructs t
+        modus-themes-fringes 'subtle
+        modus-themes-tabs-accented t
+        modus-themes-paren-match '(bold intense)
+        modus-themes-prompts '(bold intense)
+        modus-themes-org-blocks 'tinted-background
+        modus-themes-scale-headings t
+        modus-themes-region '(bg-only)
+        modus-themes-headings
+        '((1 . (rainbow overline background 1.4))
+          (2 . (rainbow background 1.3))
+          (3 . (rainbow bold 1.2))
+          (t . (semilight 1.1))))
+
+  (setq modus-themes-completions
+      '((matches . (extrabold underline))
+        (selection . (extrabold underline))))
+  
+  ;; Load the dark theme by default
+  (load-theme 'modus-vivendi t)
+
+
+
+                ;; If you're using Emacs 27, either install Modus themes or use this one!
+                ;(load-theme 'deeper-blue t)
+
+                (hl-line-mode 1)
+                (blink-cursor-mode 1)
+
+                ;; Remember recently edited files
+                (recentf-mode 1)
+
+                ;; Save what you enter into minibuffer prompts
+                (setq history-length 100
+                      history-delete-duplicates 1)
+                (savehist-mode 1)
+
+                ;; Remember and restore the last cursor location of opened files
+                (save-place-mode 1)
+
+                ;; Don't pop up UI dialogs when prompting
+              (setq use-dialog-box nil)
+
+              ;; Revert buffers when the underlying file has changed
+            (global-auto-revert-mode 1)
+
+            ;; Revert Dired and other buffers
+          (setq global-auto-revert-non-file-buffers t)
 #+end_src
 
 
@@ -58,7 +136,7 @@ Now we configure crafted emacs by calling the =crafted-init-confug.el=
 ** TODO set up =early-init.el=
 
 * Getting started
-Building out the =init.el= file. Inspired by 
+Building out the =init.el= file. Inspired by
 ** TODO get frame size set to full screen
 ** TODO install fonts to match terminal
 ** TODO install theme to match terminal
