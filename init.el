@@ -7,6 +7,14 @@
 ;; (require 'no-littering)
 (load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
 
+;; Load crafted-osx configuration
+(require 'crafted-osx-config)
+(crafted-osx-transparent-titlebar)
+
+;; Can't use alt to type hashtag unless we make command key 'meta
+;; (setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'none)
+
 (setq inhibit-startup-message t  ; Don't show the splash screen
                             visible-bell t)          ; Flash when the bell rings
 

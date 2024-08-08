@@ -41,15 +41,8 @@ a blank crafted-emacs we do the following
 See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-Cleaning.org][Teach Emacs to Keep Your Folders Clean]] by David Wilson.
 
 #+begin_src emacs-lisp :tangle "early-init.el"
-;; (require -littering)
+;; (require-littering)
 #+end_src
-
-
-** Custom file
-
-Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
-
-
 
 ** Custom file
 
@@ -72,72 +65,88 @@ Now we configure crafted emacs by calling the =crafted-init-confug.el=
 
 * Basic Configuration
 
-Here we add some basic configuration settings described and documented by David Wilson ([[https://systemcrafters.net/][System Crafters]])  in [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch (New)]].
+** This is a Mac so we load ==crafted-osx== configuration
 
 #+begin_src emacs-lisp :tangle "init.el"
-    (setq inhibit-startup-message t  ; Don't show the splash screen
-                              visible-bell t)          ; Flash when the bell rings
+    ;; Load crafted-osx configuration
+    (require 'crafted-osx-config)
+    (crafted-osx-transparent-titlebar)
+  #+end_src
 
-      ;; Turn off some unneeded UI elements
-                (menu-bar-mode 1)  ; Leave this one on if you're a beginner!
-                (tool-bar-mode -1)
-                (scroll-bar-mode 1)
-
-                ;; Display line numbers in every buffer
-                (global-display-line-numbers-mode 1)
-
-
-    ;; Configure the Modus Themes' appearance
-  (setq modus-themes-mode-line '(accented borderless)
-        modus-themes-bold-constructs t
-        modus-themes-italic-constructs t
-        modus-themes-fringes 'subtle
-        modus-themes-tabs-accented t
-        modus-themes-paren-match '(bold intense)
-        modus-themes-prompts '(bold intense)
-        modus-themes-org-blocks 'tinted-background
-        modus-themes-scale-headings t
-        modus-themes-region '(bg-only)
-        modus-themes-headings
-        '((1 . (rainbow overline background 1.4))
-          (2 . (rainbow background 1.3))
-          (3 . (rainbow bold 1.2))
-          (t . (semilight 1.1))))
-
-  (setq modus-themes-completions
-      '((matches . (extrabold underline))
-        (selection . (extrabold underline))))
-  
-  ;; Load the dark theme by default
-  (load-theme 'modus-vivendi t)
+  We can't type ==#== unless we make the alt key not special, We need to use ==<Esc>== for ==meta==. As an experiment, I have made the left alt key non-special and made the right alt key ==meta==. If this is awkward, I can use ==<Esc>== as the "<Meta>" key. The mac specific key settings are set in the customize file ==custom.el== and should be tuned there in the customize interface..
+  #+begin_src emacs-lisp :tangle "init.el"
+    ;; Can't use alt to type hashtag unless we make command key 'meta
+    ;; (setq mac-command-modifier 'meta)
+    ;; (setq mac-option-modifier 'none)
+#+end_src
 
 
+  Here we add some basic configuration settings described and documented by David Wilson ([[https://systemcrafters.net/][System Crafters]])  in [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch (New)]].
 
-                ;; If you're using Emacs 27, either install Modus themes or use this one!
-                ;(load-theme 'deeper-blue t)
+  #+begin_src emacs-lisp :tangle "init.el"
+      (setq inhibit-startup-message t  ; Don't show the splash screen
+                                visible-bell t)          ; Flash when the bell rings
 
-                (hl-line-mode 1)
-                (blink-cursor-mode 1)
+        ;; Turn off some unneeded UI elements
+                  (menu-bar-mode 1)  ; Leave this one on if you're a beginner!
+                  (tool-bar-mode -1)
+                  (scroll-bar-mode 1)
 
-                ;; Remember recently edited files
-                (recentf-mode 1)
+                  ;; Display line numbers in every buffer
+                  (global-display-line-numbers-mode 1)
 
-                ;; Save what you enter into minibuffer prompts
-                (setq history-length 100
-                      history-delete-duplicates 1)
-                (savehist-mode 1)
 
-                ;; Remember and restore the last cursor location of opened files
-                (save-place-mode 1)
+      ;; Configure the Modus Themes' appearance
+    (setq modus-themes-mode-line '(accented borderless)
+          modus-themes-bold-constructs t
+          modus-themes-italic-constructs t
+          modus-themes-fringes 'subtle
+          modus-themes-tabs-accented t
+          modus-themes-paren-match '(bold intense)
+          modus-themes-prompts '(bold intense)
+          modus-themes-org-blocks 'tinted-background
+          modus-themes-scale-headings t
+          modus-themes-region '(bg-only)
+          modus-themes-headings
+          '((1 . (rainbow overline background 1.4))
+            (2 . (rainbow background 1.3))
+            (3 . (rainbow bold 1.2))
+            (t . (semilight 1.1))))
 
-                ;; Don't pop up UI dialogs when prompting
-              (setq use-dialog-box nil)
+    (setq modus-themes-completions
+        '((matches . (extrabold underline))
+          (selection . (extrabold underline))))
 
-              ;; Revert buffers when the underlying file has changed
-            (global-auto-revert-mode 1)
+    ;; Load the dark theme by default
+    (load-theme 'modus-vivendi t)
 
-            ;; Revert Dired and other buffers
-          (setq global-auto-revert-non-file-buffers t)
+
+
+                  ;; If you're using Emacs 27, either install Modus themes or use this one!
+                  ;(load-theme 'deeper-blue t)
+
+                  (hl-line-mode 1)
+                  (blink-cursor-mode 1)
+
+                  ;; Remember recently edited files
+                  (recentf-mode 1)
+
+                  ;; Save what you enter into minibuffer prompts
+                  (setq history-length 100
+                        history-delete-duplicates 1)
+                  (savehist-mode 1)
+
+                  ;; Remember and restore the last cursor location of opened files
+                  (save-place-mode 1)
+
+                  ;; Don't pop up UI dialogs when prompting
+                (setq use-dialog-box nil)
+
+                ;; Revert buffers when the underlying file has changed
+              (global-auto-revert-mode 1)
+
+              ;; Revert Dired and other buffers
+            (setq global-auto-revert-non-file-buffers t)
 #+end_src
 
 
