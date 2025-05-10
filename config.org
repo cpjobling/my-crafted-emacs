@@ -1,4 +1,4 @@
-#+TITLE: My Crafted Emacs Configuratio
+#+TITLE: My Crafted Emacs Configuration
 #+DATE: 2024-08-01
 #+AUTHOR Chris Jobling
 #+EMAIL cpjobling@cpjobling.net
@@ -71,13 +71,15 @@ Now we configure crafted emacs by calling the =crafted-init-confug.el=
     ;; Load crafted-osx configuration
     (require 'crafted-osx-config)
     (crafted-osx-transparent-titlebar)
-  #+end_src
+#+end_src
 
-  We can't type ==#== unless we make the alt key not special, We need to use ==<Esc>== for ==meta==. As an experiment, I have made the left alt key non-special and made the right alt key ==meta==. If this is awkward, I can use ==<Esc>== as the "<Meta>" key. The mac specific key settings are set in the customize file ==custom.el== and should be tuned there in the customize interface..
-  #+begin_src emacs-lisp :tangle "init.el"
+We can't type ==#== unless we make the alt key not special, We need to use ==<Esc>== for ==meta==. As an experiment, I have made the
+left alt key non-special and made the right alt key ==meta==. If this is awkward, I can use ==<Esc>== as the "<Meta>" key.
+The mac specific key settings are set in the customize file ==custom.el== and should be tuned there in the customize interface.
+#+begin_src emacs-lisp :tangle "init.el"
     ;; Can't use alt to type hashtag unless we make command key 'meta
-    ;; (setq mac-command-modifier 'meta)
-    ;; (setq mac-option-modifier 'none)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'none)
 #+end_src
 
 

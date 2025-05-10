@@ -13,11 +13,8 @@
  '(ns-function-modifier 'hyper)
  '(ns-right-alternate-modifier nil)
  '(package-archive-priorities
-   '(("gnu" . 99)
-     ("nongnu" . 80)
-     ("stable" . 70)
-     ("melpa" . 0)))
- '(package-selected-packages '(no-littering)))
+   '(("gnu" . 99) ("nongnu" . 80) ("stable" . 70) ("melpa" . 0)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
