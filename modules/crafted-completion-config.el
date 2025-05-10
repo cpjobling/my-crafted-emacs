@@ -35,11 +35,6 @@
 
 ;;; Marginalia
 (when (require 'marginalia nil :noerror)
-  ;; Configure Marginalia
-  (customize-set-variable 'marginalia-annotators
-                          '(marginalia-annotators-heavy
-                            marginalia-annotators-light
-                            nil))
   (marginalia-mode 1))
 
 
@@ -79,6 +74,11 @@
 ;;; Corfu
 (when (require 'corfu nil :noerror)
 
+  (when (version< "30" emacs-version)
+    ;; this mode is only available in Emacs version 30.1 and
+    ;; greater.
+    (global-completion-preview-mode -1))
+  
   (unless (display-graphic-p)
     (when (require 'corfu-terminal nil :noerror)
       (corfu-terminal-mode +1)))
