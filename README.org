@@ -249,7 +249,7 @@ community!
      + Use ~M-x package-list-packages~ to display the list of packages.
      + Find the package in the list which doesn't work for you, it
        will have either the /installed/ or /dependency/ status.
-     + Press the ~enter~ key to get more details on the package an look
+     + Press the ~enter~ key to get more details on the package and look
        near the bottom of the metadata, you should see a line with
        "Other Versions". Choose the development version - it will have
        a version number that looks like a date and the text ~(melpa)~
