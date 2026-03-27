@@ -15,3 +15,6 @@ places
 recentf
 var
 modules/.dir-locals.el
+init.el
+early-init.el
+my-crafted-emacs.code-workspace

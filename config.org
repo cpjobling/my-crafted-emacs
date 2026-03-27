@@ -18,7 +18,7 @@ This is a record of the set up of my personalised version of [[https://github.co
 It is a literate configuration (inspired by Prot's [[https://protesilaos.com/emacs/dotemacs[[https://protesilaos.com/emacs/dotemacsuu][][GNU Emacs configuration]] and [[https://github.com/munen/emacs.d][munen/emacs.d]]) that generates =early-init.el= and =init.el=. 
 
 When I want to modify my Emacs setup, I edit this file and then
-evaluate the following code block or do =C-c C-v C-t=. All files will
+evaluate the following code block or do =C-c C-v t=. All files will
 be updated accordingly.
 
 #+begin_src emacs-lisp :tangle no :results none
@@ -28,12 +28,11 @@ be updated accordingly.
 
 * Initial set up using =early-init.el=
 
-According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/docs/getting-started-guide.org][Crafted Emacs/Getting Started Guide], the first thing we should do is create an =earl-init.el= file containing the followinh:
-
-a blank crafted-emacs we do the following
+According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/docs/getting-started-guide.org][Crafted Emacs/Getting Started Guide], the first thing we should do is create an =earl-init.el= file containing the following:
 
 #+begin_src emacs-lisp :tangle "early-init.el"
-(load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
+  ;; -*- lexical-binding: t; -*-
+  (load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
 #+end_src
 
 ** TODO Set up tidy files
@@ -49,17 +48,16 @@ See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs
 Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
 
 #+begin_src emacs-lisp :tangle "init.el"
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (and custom-file
-           (file-exists-p custom-file))
-  (load custom-file nil :nomessage))
+  ;; -*- lexical-binding: t; -*-
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (when (and custom-file
+             (file-exists-p custom-file))
+    (load custom-file nil :nomessage))
 #+end_src
 
-Now we configure crafted emacs by calling the =crafted-init-confug.el=
+Now we configure crafted emacs by calling the =crafted-init-config.el=
 
 #+begin_src emacs-lisp :tangle "init.el"
-      ;; (use-package 'no-littering)
-      ;; (require 'no-littering)
       (load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
 #+end_src
 
@@ -68,10 +66,11 @@ Now we configure crafted emacs by calling the =crafted-init-confug.el=
 ** This is a Mac so we load ==crafted-osx== configuration
 
 #+begin_src emacs-lisp :tangle "init.el"
-    ;; Load crafted-osx configuration
-    (require 'crafted-osx-config)
-    (crafted-osx-transparent-titlebar)
+      ;; Load crafted-osx configuration
+      (require 'crafted-osx-config)
+      (crafted-osx-transparent-titlebar)
 #+end_src
+
 
 We can't type ==#== unless we make the alt key not special, We need to use ==<Esc>== for ==meta==. As an experiment, I have made the
 left alt key non-special and made the right alt key ==meta==. If this is awkward, I can use ==<Esc>== as the "<Meta>" key.
@@ -82,6 +81,9 @@ The mac specific key settings are set in the customize file ==custom.el== and sh
     (setq mac-option-modifier 'none)
 #+end_src
 
+
+
+** Basic configuration settings
 
   Here we add some basic configuration settings described and documented by David Wilson ([[https://systemcrafters.net/][System Crafters]])  in [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch (New)]].
 
@@ -157,7 +159,5 @@ The mac specific key settings are set in the customize file ==custom.el== and sh
 ** TODO get the tangling working
 ** TODO set up =early-init.el=
 * Getting started
-Building out the =init.el= file. Inspired by
 ** TODO get frame size set to full screen
-** TODO install fonts to match terminal
 ** TODO install theme to match terminal
