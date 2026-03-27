@@ -35,14 +35,6 @@ According to the [[https://github.com/SystemCrafters/crafted-emacs/blob/master/d
   (load "~/emacsen/my-crafted-emacs/modules/crafted-early-init-config")
 #+end_src
 
-** TODO Set up tidy files
-
-See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-Cleaning.org][Teach Emacs to Keep Your Folders Clean]] by David Wilson.
-
-#+begin_src emacs-lisp :tangle "early-init.el"
-;; (require-littering)
-#+end_src
-
 ** Custom file
 
 Now we set set up a custom-file to receive the customization values that we set interactively inside emacs.
@@ -59,6 +51,14 @@ Now we configure crafted emacs by calling the =crafted-init-config.el=
 
 #+begin_src emacs-lisp :tangle "init.el"
       (load "~/emacsen/my-crafted-emacs/modules/crafted-init-config")
+#+end_src
+
+** Set up tidy files
+
+See [[https://github.com/daviwil/emacs-from-scratch/blob/master/show-notes/Emacs-Tips-Cleaning.org][Teach Emacs to Keep Your Folders Clean]] by David Wilson.
+
+#+begin_src emacs-lisp :tangle "init.el"
+(require 'no-littering)
 #+end_src
 
 * Basic Configuration
@@ -153,8 +153,6 @@ The mac specific key settings are set in the customize file ==custom.el== and sh
             (setq global-auto-revert-non-file-buffers t)
 #+end_src
 
-
-** TODO make config use =use-emacs-directory= prefix
 ** TODO get text wrapping working: use =M-x visual-line-mode= initially.
 ** TODO get the tangling working
 ** TODO set up =early-init.el=
